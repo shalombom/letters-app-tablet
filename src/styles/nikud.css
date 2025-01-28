@@ -1,0 +1,206 @@
+html, body {
+  overflow: hidden;
+  height: 100%;
+  touch-action: none;
+}
+
+.nikud-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;  
+}
+
+.monkey-container {
+  width: 625px;
+  height: 625px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.monkey-image {
+  width: 625px;
+  height: 625px;
+  object-fit: contain;
+  background: transparent;
+  position: absolute;
+  z-index: 1;  
+  left: 50%;
+  top: calc(50% + 50px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;  
+  user-select: none;  
+  cursor: move;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nikud-row-group {
+  width: 100%;
+  margin-bottom: 2rem;
+  z-index: 2;
+  position: relative;
+  transform: translateX(-1.5cm);
+}
+
+.nikud-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -40px;
+}
+
+.nikud-row:first-child {
+  margin-top: 0;
+}
+
+.nikud-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nikud-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.nikud-sign-container {
+  width: 60%;
+  height: 50%;
+  border: 0.25px solid rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.practice-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1100px;
+  margin-top: calc(8cm + 30px);
+  z-index: 2;
+  position: relative;
+}
+
+.practice-item {
+  flex: 1;
+  max-width: 156px;
+  width: 156px;
+  height: 286px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin: 0 25px;
+}
+
+.practice-tile {
+  border-radius: 12px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.practice-item .nikud-tile {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.practice-tile .nikud-sign-container {
+  transform: translate(-50%, -50%) scale(2);
+  border: none !important;
+  width: 100%;
+  height: 100%;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+
+.practice-tile .nikud-svg {
+  transform: translateX(-50%);
+}
+
+.nikud-svg {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  max-width: 30px;
+  max-height: 15px;
+}
+
+/* Special handling for practice tile Vav components */
+.practice-tile svg[viewBox="0 0 30 70"] {
+  max-height: none;
+  max-width: none;
+  transform: translate(-50%, -50%) scale(2);
+  top: 50%;
+  bottom: auto;
+}
+
+/* Override circle size only for specific nikud types */
+.practice-row .practice-item circle:not([data-nikud="vav-holam"]):not([data-nikud="vav-shuruk"]) {
+}
+
+.practice-tile svg circle.vav-holam-dot {
+  r: 2.3;
+}
+
+.practice-tile .hirik-dot {
+  r: 8;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.practice-item .nikud-tile > div > div {
+  border: none !important;
+  outline: none !important;
+}

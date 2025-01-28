@@ -1,0 +1,35 @@
+.monkey-container {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nikud-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nikud-row-group {
+  order: 1;
+  margin-bottom: 20px;
+}
+
+.practice-row {
+  order: 3;
+}
+
+@keyframes videoFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.video-fade-out {
+  animation: videoFadeOut 1s ease-out forwards;
+}

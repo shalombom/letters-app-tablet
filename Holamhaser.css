@@ -1,0 +1,55 @@
+* {
+    border: 5px solid red !important;
+}
+
+.warehouse-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.warehouse-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.warehouse-row span {
+    position: relative;
+    padding: 5px;
+}
+
+.holam::before {
+    content: '•';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) scale(1.75);
+}
+
+.warehouse-outer {
+    border: 2px solid black;
+    padding: 20px;
+    position: relative;
+    width: 100px;
+    height: 150px;
+    margin: 10px;
+}
+
+.warehouse-inner {
+    border: 2px solid black;
+    height: 80%;
+    margin: auto;
+    width: 60%;
+    position: relative;
+}
+
+.dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
