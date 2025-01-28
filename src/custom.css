@@ -1,0 +1,41 @@
+.monkey-container {
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monkey-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.nikud-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nikud-row-group {
+  order: 1;
+  margin-bottom: 20px;
+}
+
+.monkey-image {
+  order: 2;
+  width: 625px;
+  height: 625px;
+  object-fit: contain;
+  margin-bottom: 70px;
+}
+
+.practice-row {
+  order: 3;
+}
