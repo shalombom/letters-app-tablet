@@ -18,5 +18,13 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "prefer_related_applications": false,
+  "display_override": ["fullscreen", "standalone"],
+  "categories": ["education"],
+  "lang": "he",
+  "dir": "rtl",
+  "capture_links": "none",
+  "scope": "/",
+  "shortcuts": []
 } 

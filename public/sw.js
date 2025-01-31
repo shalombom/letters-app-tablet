@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nikud-app-v2';
+const CACHE_NAME = 'nikud-app-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -19,16 +19,6 @@ const urlsToCache = [
 
 // התקנת Service Worker
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        console.log('Cache opened');
-        return cache.addAll(urlsToCache);
-      })
-      .catch(error => {
-        console.error('Cache installation failed:', error);
-      })
-  );
   self.skipWaiting();
 });
 
@@ -39,7 +29,6 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -52,38 +41,21 @@ self.addEventListener('activate', (event) => {
 // טיפול בבקשות
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // החזרה מהקאש אם קיים
-        if (response) {
-          return response;
-        }
-
-        // אחרת, הבא מהשרת
-        return fetch(event.request)
-          .then((response) => {
-            // בדוק אם התגובה תקינה
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // שמור עותק בקאש
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          })
-          .catch(error => {
-            console.error('Fetch failed:', error);
-            // אם יש שגיאה בפטצ', נחזיר דף שגיאה או תוכן ברירת מחדל
-            return new Response('Network error occurred', {
-              status: 503,
-              statusText: 'Service Unavailable'
-            });
-          });
+    fetch(event.request)
+      .then(response => {
+        // אם הבקשה הצליחה, נחזיר את התשובה ישירות
+        return response;
+      })
+      .catch(() => {
+        // רק אם יש בעיית רשת, ננסה להשתמש בקאש
+        return caches.match(event.request);
       })
   );
+});
+
+// מניעת התנהגות ברירת מחדל של אירועי מגע
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 }); 
