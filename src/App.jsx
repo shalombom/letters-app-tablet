@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import NikudTile from './components/NikudTile'
 import VideoOverlay from './components/VideoOverlay'
 import Kamatz from './components/NikudSigns/Kamatz'
@@ -73,25 +73,30 @@ const nikudVideos = {
   'vav-shuruk-third': '/video/vav.mp4',
 };
 
-const NikudButton = ({ children, onClick, ...props }) => (
-  <NikudTile
-    {...props}
-    {...('ontouchstart' in window
-      ? {
-          onTouchStart: (e) => {
-            e.preventDefault();
-            onClick();
-          }
-        }
-      : {
-          onMouseDown: onClick
-        }
-    )}
-    style={{ touchAction: 'none' }}
-  >
-    {children}
-  </NikudTile>
-);
+const NikudButton = ({ children, onClick, ...props }) => {
+  const handleInteraction = useCallback((e) => {
+    if (e.type === 'touchstart') {
+      e.preventDefault();
+    }
+    onClick();
+  }, [onClick]);
+
+  return (
+    <NikudTile
+      {...props}
+      onTouchStart={handleInteraction}
+      onMouseDown={handleInteraction}
+      style={{ 
+        touchAction: 'manipulation',
+        WebkitTouchCallout: 'none',
+        WebkitUserSelect: 'none',
+        userSelect: 'none'
+      }}
+    >
+      {children}
+    </NikudTile>
+  );
+};
 
 export default function App() {
   const [currentVideo, setCurrentVideo] = useState(null);
@@ -101,6 +106,7 @@ export default function App() {
   const [lastClickedIndex, setLastClickedIndex] = useState(0);
   const [isWarehouseVisible, setIsWarehouseVisible] = useState(true);
   const fadeTimeoutRef = useRef(null);
+  const isUpdatingRef = useRef(false);
 
   useEffect(() => {
     const preventDefault = (e) => {
@@ -130,41 +136,49 @@ export default function App() {
     };
   }, []);
 
-  const handleVideoEnd = () => {
+  const handleVideoEnd = useCallback(() => {
+    if (isUpdatingRef.current) return;
+    isUpdatingRef.current = true;
+    
     setIsVideoFading(true);
     fadeTimeoutRef.current = setTimeout(() => {
       setCurrentVideo(null);
       setIsVideoFading(false);
+      isUpdatingRef.current = false;
     }, 1000);
-  };
+  }, []);
 
-  const playVideo = (nikudType, index) => {
+  const playVideo = useCallback((nikudType, index) => {
+    if (isUpdatingRef.current) return;
+    isUpdatingRef.current = true;
+
     if (fadeTimeoutRef.current) {
       clearTimeout(fadeTimeoutRef.current);
       fadeTimeoutRef.current = null;
     }
     
-    console.log('Playing video for:', nikudType);
     setIsVideoFading(false);
     setVideoKey(prev => prev + 1);
     setCurrentVideo(nikudVideos[nikudType]);
     setLastClickedIndex(index);
     setIsWarehouseVisible(false);
-  };
+    
+    isUpdatingRef.current = false;
+  }, []);
 
-  const handleNikudClick = (NikudComponent, nikudType) => {
+  const handleNikudClick = useCallback((NikudComponent, nikudType) => {
+    if (isUpdatingRef.current) return;
+    
     setSelectedNikud(prev => {
       const firstEmpty = prev.indexOf(null);
       if (firstEmpty === -1) {
-        const newArray = [null, null, null, null];
-        newArray[0] = { component: NikudComponent, type: nikudType };
-        return newArray;
+        return [{ component: NikudComponent, type: nikudType }, null, null, null];
       }
       const newArray = [...prev];
       newArray[firstEmpty] = { component: NikudComponent, type: nikudType };
       return newArray;
     });
-  };
+  }, []);
 
   return (
     <div className="nikud-container">

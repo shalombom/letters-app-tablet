@@ -10,6 +10,12 @@
     height: 100vh;
     font-family: Arial !important;
     position: relative;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    will-change: transform;
   }
 
   /* התאמת גודל הכפתורים למסך מגע */
@@ -20,7 +26,6 @@
     justify-content: center;
     cursor: pointer;
     border-radius: 12px;
-    transition: all 0.2s ease;
     background: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     touch-action: manipulation;
@@ -28,8 +33,16 @@
     width: 60px !important;
     height: 108px !important;
     font-family: Arial !important;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+    transition: transform 0.1s ease-out;
   }
   
+  .nikud-tile:active {
+    transform: scale(0.95) translateZ(0);
+  }
+
   .nikud-tile > div {
     font-family: Arial !important;
   }
