@@ -1,0 +1,157 @@
+/* התאמות בפציפיות לטאבלט גלקסי Tab 8 במצב לרוחב */
+@media screen and (max-width: 1280px) and (orientation: landscape) {
+  /* סידור אופקי של המיכל הראשי */
+  .nikud-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial !important;
+    position: relative;
+  }
+
+  /* התאמת גודל הכפתורים למסך מגע */
+  .nikud-tile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    width: 60px !important;
+    height: 108px !important;
+    font-family: Arial !important;
+  }
+  
+  .nikud-tile > div {
+    font-family: Arial !important;
+  }
+
+  .practice-tile > div {
+    font-family: Arial !important;
+  }
+
+  /* מרווחים מותאמים בין הכפתורים */
+  .nikud-row {
+    gap: 15px;
+    margin: 60px 0 0 0;
+    position: relative;
+    z-index: 1000;
+  }
+
+  /* התאמת גודל הוידאו */
+  .monkey-image {
+    width: 285px !important;
+    height: 285px !important;
+    margin: 0 !important;
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .video-overlay-right,
+  .video-overlay-left,
+  .video-overlay-center,
+  .video-overlay-fourth {
+    top: -130px !important;
+  }
+
+  /* סידור הניקוד בצד */
+  .nikud-row-group {
+    flex-shrink: 0;
+    margin: 0;
+    margin-right: -1px !important;
+    transform: translateX(0) !important;
+    margin-top: 50px !important;
+  }
+
+  /* התאמת אזור התרגול */
+  .practice-row {
+    flex-shrink: 0;
+    position: fixed;
+    top: 501px;
+    margin-top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 1000;
+  }
+
+  .nikud-tile .nikud-svg {
+    width: 30px !important;
+    height: 15px !important;
+    transform: scale(1) !important;
+  }
+
+  /* הקטנת התאים ב-50% */
+  .practice-row .practice-item:first-child .practice-tile,  /* קמץ */
+  .practice-row .practice-item:nth-child(2) .practice-tile, /* חיריק */
+  .practice-row .practice-item:nth-child(3) .practice-tile, /* תא שלישי */
+  .practice-row .practice-item:nth-child(4) .practice-tile, /* סגול */
+  .practice-row .practice-item:nth-child(6) .practice-tile, /* שווא */
+  .practice-row .practice-item:nth-child(7) .practice-tile, /* פתח */
+  .practice-row .practice-item:nth-child(10) .practice-tile, /* צירה */
+  .practice-row .practice-item:nth-child(11) .practice-tile /* קובוץ */ {
+    transform: scale(0.5);
+    transform-origin: center center;
+  }
+
+  .nikud-tile .nikud-sign-container {
+    width: 80% !important;
+    height: 70% !important;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* התאמות ספציפיות למחשבי חלונות */
+@media screen and (min-width: 1281px) {
+  .nikud-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 255, 0.1); /* רקע כחול שקוף רק למחשב */
+  }
+
+  .nikud-row-group {
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+
+  .nikud-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .practice-row {
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .practice-item {
+    width: 180px;
+    height: 180px;
+  }
+
+  .practice-tile {
+    width: 100% !important;
+    height: 100% !important;
+  }
+} 

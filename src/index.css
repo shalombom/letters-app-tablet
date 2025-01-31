@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.nikud-container {
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  padding: 40px 0;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nikud-row-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.nikud-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.practice-row {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 0;
+  position: relative;
+  top: 100px;
+}
+
+.practice-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  background: transparent !important;
+  width: 96px;
+  height: 180px;
+}
+
+.practice-tile {
+  background: transparent !important;
+  width: 120px !important;
+  height: 200px !important;
+  cursor: pointer;
+  padding: 5mm;
+  margin: -5mm;
+}
+
+.nikud-tile {
+  position: relative;
+  margin: 5px;
+  display: inline-block;
+  background: transparent !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.5);
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.nikud-tile-inner {
+  position: relative;
+  width: 80px !important;
+  height: 80px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.nikud-sign-container {
+  width: 80%;
+  height: 70%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background: transparent !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.video-overlay {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.video-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin-top: 200px;
+  pointer-events: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 5px solid lime;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.video-container video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* סגנון מיוחד לתאי התרגול */
+.practice-row .nikud-tile {
+  width: 96px !important;
+  height: 130px !important;
+}
+
+.practice-row .nikud-tile-inner {
+  border: 1.5px solid rgba(0, 0, 0, 0.5);
+  width: 96px !important;
+  height: 130px !important;
+}
+
+/* סגנון מיוחד לתא הקמץ */
+.kamatz-tile {
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.kamatz-tile .nikud-sign-container {
+  width: 70%;
+  height: 70%;
+}
+
+/* סגנון ספציפי לתאי המחסן */
+.nikud-row .nikud-tile {
+  width: 80px !important;
+  height: 72px !important;
+}
+
+.nikud-row .nikud-tile-inner {
+  width: 80px !important;
+  height: 72px !important;
+}
+
+/* סגנון ספציפי לפתח במחסן */
+.nikud-row .nikud-tile line {
+  stroke-width: 4 !important;
+}
