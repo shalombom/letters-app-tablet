@@ -9,6 +9,16 @@ node_modules
 # Production
 /dist
 /build
+dist-ssr
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Misc
 .DS_Store
@@ -17,6 +27,7 @@ node_modules
 .env.test.local
 .env.production.local
 *.pem
+*.local
 
 # Debug
 npm-debug.log*
@@ -29,28 +40,10 @@ yarn-error.log*
 # Vercel
 .vercel
 
-# IDE
-.vscode/
-.idea/
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-dist
-dist-ssr
-*.local
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
